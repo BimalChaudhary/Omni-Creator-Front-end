@@ -1,8 +1,8 @@
-const Layout = () => {
-  return (
-    <div>
-      <h1>Layout</h1>
-    </div>
-  );
+"use client";
+import { redirect } from "next/navigation";
+
+const Page = () => {
+  redirect("/layout/dashboard");
 };
-export default Layout;
+
+export default Page;

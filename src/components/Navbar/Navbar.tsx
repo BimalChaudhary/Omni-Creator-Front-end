@@ -1,3 +1,4 @@
+"use client";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +8,7 @@ import { useClerk, UserButton, useUser } from "@clerk/nextjs";
 const Navbar = () => {
   const { user } = useUser();
   const { openSignIn } = useClerk();
+
   return (
     <div className="fixed z-5 w-full backdrop-blur-2xl flex justify-between items-center py-3 px-4 sm:px-20 xl:px-32">
       <Link href={"/"}>
