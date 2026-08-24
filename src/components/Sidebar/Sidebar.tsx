@@ -20,7 +20,7 @@ const navItems = [
   { to: "/layout/blogtitles", label: "Blog Titles", Icon: Hash },
   { to: "/layout/generateimages", label: "Generate Images", Icon: Images },
   { to: "/layout/removebackground", label: "Remove Background", Icon: Eraser },
-  { to: "/layout/removeobject", label: "Remove Object", Icon: Scissors },
+  // { to: "/layout/removeobject", label: "Remove Object", Icon: Scissors },
   { to: "/layout/reviewresume", label: "Review Resume", Icon: FileText },
   { to: "/layout/community", label: "Community", Icon: User },
 ];
