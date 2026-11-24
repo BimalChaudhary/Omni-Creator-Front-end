@@ -1,16 +1,12 @@
-import { useClerk, useUser } from "@clerk/nextjs";
 import {
   Eraser,
   FileText,
   Hash,
   House,
   Images,
-  LogOut,
-  Scissors,
   SquarePen,
   User,
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -31,29 +27,16 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ sidebar, setSidebar }: SidebarProps) => {
-  const { user } = useUser();
-  const { signOut, openUserProfile } = useClerk();
   const pathname = usePathname();
 
   return (
-    <div
-      className={`w-60 bg-white border-r border-slate-200 flex flex-col justify-between items-center max-sm:absolute top-14 bottom-0 z-20 ${
+    <aside
+      className={`z-20 flex w-60 flex-col items-center justify-between border-r border-slate-200 bg-white max-sm:absolute max-sm:bottom-0 max-sm:top-14 ${
         sidebar ? "translate-x-0" : "max-sm:-translate-x-full"
-      } transition-all duration-300 ease-in-out`}
+      } transition-transform duration-300 ease-in-out`}
     >
-      <div className="my-7 w-full">
-        {user?.imageUrl && (
-          <Image
-            src={user.imageUrl}
-            width={52}
-            height={52}
-            className="rounded-full mx-auto"
-            alt="User avatar"
-          />
-        )}
-        <h1 className="mt-1 text-center">{user?.fullName}</h1>
-
-        <div className="px-4 mt-7 space-y-1 text-sm font-medium text-slate-600">
+      <nav aria-label="Main navigation" className="my-5 w-full px-4">
+        <div className="space-y-1 text-sm font-medium text-slate-600">
           {navItems.map(({ to, label, Icon }) => {
             const isActive = pathname === to;
             return (
@@ -61,47 +44,24 @@ const Sidebar = ({ sidebar, setSidebar }: SidebarProps) => {
                 key={to}
                 href={to}
                 onClick={() => setSidebar(false)}
-                className={`px-3.5 py-2.5 flex items-center gap-3 rounded-xl transition-colors ${
+                aria-current={isActive ? "page" : undefined}
+                className={`flex items-center gap-3 rounded-xl px-3.5 py-2.5 transition-colors ${
                   isActive
                     ? "bg-indigo-600 text-white shadow-sm shadow-indigo-200"
                     : "hover:bg-slate-100 hover:text-slate-900"
                 }`}
               >
-                <Icon className={`w-4 h-4 ${isActive ? "text-white" : ""}`} />{" "}
+                <Icon className="h-4 w-4" />
                 {label}
               </Link>
             );
           })}
         </div>
+      </nav>
+      <div className="w-full border-t border-slate-200 p-4 text-xs text-slate-400">
+        OmniCreator
       </div>
-      <div className="w-full border-t border-slate-200 p-4 px-5 flex items-center justify-between">
-        <div
-          className="flex gap-2 items-center cursor-pointer"
-          onClick={() => openUserProfile()}
-        >
-          {user?.imageUrl && (
-            <Image
-              src={user.imageUrl}
-              width={32}
-              height={32}
-              alt="User avatar"
-              className="rounded-full"
-            />
-          )}
-          <div>
-            <span className="text-sm font-medium block">{user?.fullName}</span>
-            <span className="text-xs text-gray-500">
-              {user?.publicMetadata?.plan === "premium" ? "Premium" : "Free"}{" "}
-              Plan
-            </span>
-          </div>
-        </div>
-        <LogOut
-          onClick={() => signOut()}
-          className="w-4.5  text-gray-400 hover:text-gray-700 transition cursor-pointer"
-        />
-      </div>
-    </div>
+    </aside>
   );
 };
 
