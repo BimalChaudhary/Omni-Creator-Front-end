@@ -6,7 +6,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import Image from "next/image";
 
-axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
 
 const Page = () => {
   const [input, setInput] = useState<File | null>(null);

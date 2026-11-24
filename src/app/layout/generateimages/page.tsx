@@ -5,7 +5,7 @@ import { ImageIcon, Sparkles } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
 
 const Page = () => {
   const imageStyle = [

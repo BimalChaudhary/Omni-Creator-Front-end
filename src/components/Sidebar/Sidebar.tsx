@@ -16,7 +16,7 @@ import { usePathname } from "next/navigation";
 
 const navItems = [
   { to: "/layout/dashboard", label: "Dashboard", Icon: House },
-  { to: "/layout/writearticle", label: "Write Artical", Icon: SquarePen },
+  { to: "/layout/writearticle", label: "Write Article", Icon: SquarePen },
   { to: "/layout/blogtitles", label: "Blog Titles", Icon: Hash },
   { to: "/layout/generateimages", label: "Generate Images", Icon: Images },
   { to: "/layout/removebackground", label: "Remove Background", Icon: Eraser },
@@ -37,7 +37,7 @@ const Sidebar = ({ sidebar, setSidebar }: SidebarProps) => {
 
   return (
     <div
-      className={`w-60 bg-white border-r border-gray-200 flex flex-col justify-between items-center max-sm:absolute top-14 bottom-0 ${
+      className={`w-60 bg-white border-r border-slate-200 flex flex-col justify-between items-center max-sm:absolute top-14 bottom-0 z-20 ${
         sidebar ? "translate-x-0" : "max-sm:-translate-x-full"
       } transition-all duration-300 ease-in-out`}
     >
@@ -53,7 +53,7 @@ const Sidebar = ({ sidebar, setSidebar }: SidebarProps) => {
         )}
         <h1 className="mt-1 text-center">{user?.fullName}</h1>
 
-        <div className="px-6 mt-5 text-sm text-gray-600 font-medium">
+        <div className="px-4 mt-7 space-y-1 text-sm font-medium text-slate-600">
           {navItems.map(({ to, label, Icon }) => {
             const isActive = pathname === to;
             return (
@@ -61,10 +61,10 @@ const Sidebar = ({ sidebar, setSidebar }: SidebarProps) => {
                 key={to}
                 href={to}
                 onClick={() => setSidebar(false)}
-                className={`px-3.5 py-2.5 flex items-center gap-3 rounded ${
+                className={`px-3.5 py-2.5 flex items-center gap-3 rounded-xl transition-colors ${
                   isActive
-                    ? "bg-linear-to-r from-[#3C81F6] to-[#9234EA] text-white"
-                    : ""
+                    ? "bg-indigo-600 text-white shadow-sm shadow-indigo-200"
+                    : "hover:bg-slate-100 hover:text-slate-900"
                 }`}
               >
                 <Icon className={`w-4 h-4 ${isActive ? "text-white" : ""}`} />{" "}
@@ -74,7 +74,7 @@ const Sidebar = ({ sidebar, setSidebar }: SidebarProps) => {
           })}
         </div>
       </div>
-      <div className="w-full border-t border-gray-200 p-4 px-7 flex items-center justify-baseline">
+      <div className="w-full border-t border-slate-200 p-4 px-5 flex items-center justify-between">
         <div
           className="flex gap-2 items-center cursor-pointer"
           onClick={() => openUserProfile()}

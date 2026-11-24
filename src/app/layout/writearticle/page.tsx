@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import Markdown from "react-markdown";
 
-axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
 
 export const Page = () => {
   const articleLengthOptions = [

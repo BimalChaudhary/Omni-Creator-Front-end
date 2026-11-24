@@ -14,25 +14,27 @@ type CreationItemProps = {
 const CreationItem = ({ item }: CreationItemProps) => {
   const [expanded, setExpended] = useState(false);
   return (
-    <div
-      onClick={() => setExpended(!expanded)}
-      className="p-4 max-w-5xl text-sm bg-white border border-gray-200 rounded-lg cursor-pointer"
-    >
-      <div className="flex justify-between items-center gap-4">
+    <article className="max-w-5xl rounded-xl border border-slate-200 bg-white text-sm transition-colors hover:border-indigo-200">
+      <button
+        type="button"
+        aria-expanded={expanded}
+        onClick={() => setExpended(!expanded)}
+        className="flex w-full items-center justify-between gap-4 p-4 text-left"
+      >
         <div>
-          <h2>{item.prompt}</h2>
+          <h2 className="font-medium text-slate-800">{item.prompt}</h2>
 
-          <p className="text-gray-500">
-            {item.type} - {new Date(item.created_at).toLocaleString()}
+          <p className="mt-1 text-xs capitalize text-slate-500">
+            {item.type} · {new Date(item.created_at).toLocaleString()}
           </p>
         </div>
 
-        <button className="bg-[#EFF6FF] border border-[#BFDBFE] text-[#1E40AF] px-4 py-1 rounded-full">
-          {item.type}
-        </button>
-      </div>
+        <span className="shrink-0 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1 text-xs font-medium capitalize text-indigo-700">
+          {expanded ? "Close" : "View"}
+        </span>
+      </button>
       {expanded && (
-        <div>
+        <div className="border-t border-slate-100 px-4 pb-4">
           {" "}
           {item.type === "image" ? (
             <div>
@@ -43,7 +45,7 @@ const CreationItem = ({ item }: CreationItemProps) => {
               />
             </div>
           ) : (
-            <div className="mt-3 h-full overflow-y-scroll text-sm text-slate-700">
+            <div className="mt-3 max-h-96 overflow-y-auto text-sm text-slate-700">
               <div className="reset-tw">
                 <Markdown>{item.content}</Markdown>
               </div>
@@ -51,7 +53,7 @@ const CreationItem = ({ item }: CreationItemProps) => {
           )}
         </div>
       )}
-    </div>
+    </article>
   );
 };
 
