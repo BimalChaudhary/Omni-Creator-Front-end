@@ -18,7 +18,7 @@ const Hero = () => {
       <div className="flex flex-wrap justify-center gap-4 text-sm max-sm:text-xs">
         <Link href={"/layout"}>
           <button className="bg-blue-600 text-white px-5 py-3 rounded-lg hover:scale-102 active:scale-95 transition cursor-pointer">
-            Start Start Creating now
+            Start Creating now
           </button>
         </Link>
 
